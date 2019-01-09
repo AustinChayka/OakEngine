@@ -1,18 +1,6 @@
 #include "Game.h"
 
-Game::Game() {
-
-
-
-}
-
-Game::~Game() {
-
-
-
-}
-
-void Game::init(const char * title, int xPos, int yPos, int width, int height, bool fullscreen) {
+Game::Game(const char * title, int xPos, int yPos, int width, int height, bool fullscreen) {
 
 	int flags = 0;
 	if(fullscreen) flags = SDL_WINDOW_FULLSCREEN;
@@ -34,13 +22,19 @@ void Game::init(const char * title, int xPos, int yPos, int width, int height, b
 				SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
 				running = true;
-				
+
 			} else std::cout << "Failed to create renderer. Error: " << SDL_GetError() << std::endl;
-					   
+
 		} else std::cout << "Failed to create window. Error: " << SDL_GetError() << std::endl;
 
 	} else  std::cout << "SDL failed to initialize. Error: " << SDL_GetError() << std::endl;
-		
+
+}
+
+Game::~Game() {
+
+
+
 }
 
 void Game::handleEvents() {

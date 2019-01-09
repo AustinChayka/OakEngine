@@ -8,11 +8,9 @@ class Game {
 
 public:
 
-	Game();
+	Game(const char * title, int xPos, int yPos, int width, int height, bool fullscreen);
 	~Game();
-
-	void init(const char * title, int xPos, int yPos, int width, int height, bool fullscreen);
-
+	
 	void handleEvents();
 	void update();
 	void render();
