@@ -2,7 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\2D Game Engine",
-    "\\2D Game Engine\\2D Game Engine"
+    "\\2D Game Engine\\2D Game Engine",
+    "\\2D Game Engine\\2D Game Engine\\assets"
   ],
+  "SelectedNode": "\\2D Game Engine\\2D Game Engine\\Game.h",
   "PreviewInSolutionExplorer": false
 }

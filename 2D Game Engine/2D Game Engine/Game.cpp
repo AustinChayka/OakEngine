@@ -57,14 +57,14 @@ void Game::handleEvents() {
 
 void Game::update() {
 
-
-
 }
 
 void Game::render() {
 
 	SDL_RenderClear(renderer);
+
 	//render stuff here
+
 	SDL_RenderPresent(renderer);
 
 }
