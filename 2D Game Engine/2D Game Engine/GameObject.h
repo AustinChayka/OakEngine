@@ -19,7 +19,14 @@ public:
 	virtual void Update() = 0;
 	void RenderObject();
 
-private:
+	bool CollidesWidth(GameObject * go);
+
+	int GetX();
+	int GetY();
+	int GetWidth();
+	int GetHeight();
+
+protected:
 
 	float x, y, scale;
 	int width, height;

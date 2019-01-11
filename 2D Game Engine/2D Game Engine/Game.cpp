@@ -1,5 +1,8 @@
 #include "Game.h"
 
+SDL_Renderer * Game::renderer = nullptr;
+SDL_Event Game::event;
+
 Game::Game(const char * title, int xPos, int yPos, int width, int height, bool fullscreen) {
 
 	int flags = 0;
@@ -37,9 +40,8 @@ Game::~Game() {
 
 }
 
-void Game::handleEvents() {
+void Game::HandleEvents() {
 
-	SDL_Event event;
 	SDL_PollEvent(&event);
 
 	switch(event.type) {
@@ -55,21 +57,23 @@ void Game::handleEvents() {
 
 }
 
-void Game::update() {
+void Game::Update() {
+
+	for(auto go : objects) go->UpdateObject();
 
 }
 
-void Game::render() {
+void Game::Render() {
 
 	SDL_RenderClear(renderer);
 
-	//render stuff here
+	for(auto go : objects) go->RenderObject();
 
 	SDL_RenderPresent(renderer);
 
 }
 
-void Game::clean() {
+void Game::Clean() {
 
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
@@ -79,8 +83,14 @@ void Game::clean() {
 
 }
 
-bool Game::isRunning() {
+bool Game::IsRunning() {
 
 	return running;
+
+}
+
+void Game::AddObject(GameObject * go) {
+
+	objects.push_back(go);
 
 }

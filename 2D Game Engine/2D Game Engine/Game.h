@@ -4,6 +4,10 @@
 #include "SDL.h"
 #include <iostream>
 #include "SDL_image.h"
+#include <vector>
+#include "GameObject.h"
+
+class GameObject;
 
 class Game {
 
@@ -12,20 +16,25 @@ public:
 	Game(const char * title, int xPos, int yPos, int width, int height, bool fullscreen);
 	~Game();
 	
-	void handleEvents();
-	void update();
-	void render();
-	void clean();
+	void HandleEvents();
+	void Update();
+	void Render();
+	void Clean();
 
-	bool isRunning();
-
+	bool IsRunning();
+	
 	static SDL_Renderer * renderer;
+	static SDL_Event event;
 
+	void AddObject(GameObject * go);
+		
 private:
 
 	bool running = false;
 	SDL_Window * window;
 
+	std::vector<GameObject *> objects;
+	
 };
 
 #endif

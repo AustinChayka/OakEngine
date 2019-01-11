@@ -1,10 +1,9 @@
 #include "SDL.h"
 
 #include "Game.h"
+#include "TestObject.h"
 
 Game * game = NULL;
-
-SDL_Renderer * Game::renderer = nullptr;
 
 int main(int argc, char * argv[]) {
 
@@ -14,15 +13,17 @@ int main(int argc, char * argv[]) {
 	Uint32 frameStart;
 	int frameTime;
 
-	game = new Game("OakEngine v0.1a", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
+	game = new Game("OakEngine v0.2a", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
+
+	game->AddObject(new TestObject());
 	
-	while(game->isRunning()) {
+	while(game->IsRunning()) {
 
 		frameStart = SDL_GetTicks();
 
-		game->handleEvents();
-		game->update();
-		game->render();
+		game->HandleEvents();
+		game->Update();
+		game->Render();
 
 		frameTime = SDL_GetTicks() - frameStart;
 
@@ -30,7 +31,7 @@ int main(int argc, char * argv[]) {
 
 	}
 
-	game->clean();
+	game->Clean();
 		
 	return 0;
 

@@ -55,3 +55,36 @@ void GameObject::RenderObject() {
 	SDL_RenderCopy(Game::renderer, texture, &srcRect, &destRect);
 
 }
+
+bool GameObject::CollidesWidth(GameObject * go) {
+
+	return x < go->GetX() + go->GetWidth()
+		&& x + width > go->GetX()
+		&& y < go->GetY() + go->GetHeight()
+		&& y + height > go->GetY();
+
+}
+
+int GameObject::GetX() {
+
+	return (int)x;
+
+}
+
+int GameObject::GetY() {
+
+	return (int)y;
+
+}
+
+int GameObject::GetWidth() {
+
+	return (int)(width * scale);
+
+}
+
+int GameObject::GetHeight() {
+
+	return (int)(height * scale);
+
+}
