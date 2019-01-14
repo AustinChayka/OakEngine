@@ -30,18 +30,17 @@ public:
 
 protected:
 
-	float x, y, scale, width, height;
+	float x, y, width, height;
 	int spriteWidth, spriteHeight;
 	
 	SDL_Texture * texture;
 	SDL_Rect srcRect, destRect;
 
-	void LockX(GameObject * go);
-	void LockY(GameObject * go);
 	float getXCenter();
 	float getYCenter();
 
-	double GetAngleTo(GameObject * go);
+	void LockCollision(GameObject * go);
+
 	int getCollisionWall(GameObject * go);
 	enum Wall {
 		TOP = 1,
@@ -49,6 +48,11 @@ protected:
 		BOTTOM = 3,
 		LEFT = 4
 	};
+
+private:
+
+	void LockX(GameObject * go);
+	void LockY(GameObject * go);
 	
 };
 

@@ -15,9 +15,8 @@ GameObject::GameObject(const char * textureSheet, float init_x, float init_y, in
 	srcRect.w = spriteWidth;
 	srcRect.h = spriteHeight;
 
-	scale = 1;
-	width = init_width * scale;
-	height = init_height * scale;
+	width = init_width;
+	height = init_height;
 	
 }
 
@@ -36,9 +35,8 @@ GameObject::GameObject(const char * textureSheet, float init_x, float init_y, in
 	srcRect.w = spriteWidth;
 	srcRect.h = spriteHeight;
 
-	scale = init_scale;
-	width = init_width * scale;
-	height = init_height * scale;
+	width = init_width * init_scale;
+	height = init_height * init_scale;
 
 }
 
@@ -122,11 +120,19 @@ float GameObject::getYCenter() {
 
 }
 
-double GameObject::GetAngleTo(GameObject * go) {
+void GameObject::LockCollision(GameObject * go) {
 
-	double dX = (double)(go->GetX() - x), dY = (double)(go->GetY() - y);
-		
-	return atan(dY / dX);
+	int collisionWall = getCollisionWall(go);
+
+	if(collisionWall == Wall::RIGHT || collisionWall == Wall::LEFT) {
+
+		LockX(go);
+
+	} else {
+
+		LockY(go);
+
+	}
 
 }
 

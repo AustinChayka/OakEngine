@@ -15,6 +15,7 @@ public:
 private:
 
 	float vX, vY;
+	bool left  = false, right = false, up = false, down = false;
 
 };
 

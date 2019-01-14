@@ -25,19 +25,19 @@ void TestObject::Update(Game * game) {
 		switch(Game::event.key.keysym.sym) {
 
 			case SDLK_w:
-				vY = -3;
+				up = true;
 				break;
 
 			case SDLK_s:
-				vY = 3;
+				down = true;
 				break;
 
 			case SDLK_a:
-				vX = -3;
+				left = true;
 				break;
 
 			case SDLK_d:
-				vX = 3;
+				right = true;
 				break;
 
 
@@ -49,19 +49,19 @@ void TestObject::Update(Game * game) {
 		switch(Game::event.key.keysym.sym) {
 
 			case SDLK_w:
-				vY = 0;
+				up = false;
 				break;
 
 			case SDLK_s:
-				vY  = 0;
+				down = false;
 				break;
 
 			case SDLK_a:
-				vX = 0;
+				left = false;
 				break;
 
 			case SDLK_d:
-				vX = 0;
+				right = false;
 				break;
 
 
@@ -69,23 +69,21 @@ void TestObject::Update(Game * game) {
 
 	}
 
-	for(auto go : game->GetObjetcs()) if(this->CollidesWidth(go)) {
-		
-		int collisionWall = getCollisionWall(go);
+	if(up && vY > -4) vY -= .5f;
+	if(down && vY < 4) vY += .5f;
+	if(left && vX > -4) vX -= .5f;
+	if(right && vX < 4) vX += .5f;
 
-		if(collisionWall == Wall::RIGHT || collisionWall == Wall::LEFT) {
-
-			LockX(go);
-
-		} else {
-
-			LockY(go);
-
-		}
-
-	}
+	if(!up && !down) vY /= 1.05f;
+	if(!left && !right) vX /= 1.05f;
 
 	x += vX;
 	y += vY;
-	
+
+	for(auto go : game->GetObjetcs()) if(this->CollidesWidth(go)) {
+		
+		LockCollision(go);
+
+	}
+		
 }
