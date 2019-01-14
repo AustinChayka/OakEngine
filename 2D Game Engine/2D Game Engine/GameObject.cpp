@@ -1,4 +1,5 @@
 #include "GameObject.h"
+#include <cmath>
 
 GameObject::GameObject(const char * textureSheet, float init_x, float init_y, int init_width, int init_height) {
 
@@ -6,15 +7,17 @@ GameObject::GameObject(const char * textureSheet, float init_x, float init_y, in
 
 	x = init_x;
 	y = init_y;
-	width = init_width;
-	height = init_height;
+	spriteWidth = init_width;
+	spriteHeight = init_height;
 
 	srcRect.x = 0;
 	srcRect.y = 0;
-	srcRect.w = width;
-	srcRect.h = height;
+	srcRect.w = spriteWidth;
+	srcRect.h = spriteHeight;
 
 	scale = 1;
+	width = init_width * scale;
+	height = init_height * scale;
 	
 }
 
@@ -25,15 +28,17 @@ GameObject::GameObject(const char * textureSheet, float init_x, float init_y, in
 
 	x = init_x;
 	y = init_y;
-	width = init_width;
-	height = init_height;
+	spriteWidth = init_width;
+	spriteHeight = init_height;
 
 	srcRect.x = 0;
 	srcRect.y = 0;
-	srcRect.w = width;
-	srcRect.h = height;
+	srcRect.w = spriteWidth;
+	srcRect.h = spriteHeight;
 
 	scale = init_scale;
+	width = init_width * scale;
+	height = init_height * scale;
 
 }
 
@@ -45,8 +50,8 @@ void GameObject::UpdateObject(Game * game) {
 	
 	destRect.x = (int)x;
 	destRect.y = (int)y;
-	destRect.w = (int)(width * scale);
-	destRect.h = (int)(height * scale);
+	destRect.w = (int)width;
+	destRect.h = (int)height;
 
 }
 
@@ -67,26 +72,84 @@ bool GameObject::CollidesWidth(GameObject * go) {
 
 }
 
-int GameObject::GetX() {
+float GameObject::GetX() {
 
-	return (int)x;
+	return x;
 
 }
 
-int GameObject::GetY() {
+float GameObject::GetY() {
 
-	return (int)y;
+	return y;
 
 }
 
 int GameObject::GetWidth() {
 
-	return (int)(width * scale);
+	return (int)width;
 
 }
 
 int GameObject::GetHeight() {
 
-	return (int)(height * scale);
+	return (int)height;
+
+}
+
+void GameObject::LockX(GameObject * go) {
+
+	if(x >= go->GetX()) x = go->GetX() + go->GetWidth();
+	else x = go->GetX() - width;
+
+}
+
+void GameObject::LockY(GameObject * go) {
+
+	if(y > go->GetY()) y = go->GetY() + go->GetHeight();
+	else y = go->GetY() - height;
+
+}
+
+float GameObject::getXCenter() {
+
+	return x + width / 2;
+
+}
+
+float GameObject::getYCenter() {
+
+	return y + height / 2;
+
+}
+
+double GameObject::GetAngleTo(GameObject * go) {
+
+	double dX = (double)(go->GetX() - x), dY = (double)(go->GetY() - y);
+		
+	return atan(dY / dX);
+
+}
+
+int GameObject::getCollisionWall(GameObject * go) {
+
+	int dX, dY;
+
+	if(x > go->GetX()) dX = go->GetX() + go->GetWidth() - x;
+	else dX = x + width - go->GetX();
+
+	if(y > go->GetY()) dY = go->GetY() + go->GetHeight() - y;
+	else dY = y + height - go->GetY();
+
+	if(dX > dY) {
+
+		if(y > go->GetY()) return Wall::TOP;
+		else return Wall::BOTTOM;
+
+	} else {
+
+		if(x > go->GetX()) return Wall::LEFT;
+		else return Wall::RIGHT;
+
+	}
 
 }

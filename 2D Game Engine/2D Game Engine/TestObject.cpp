@@ -2,8 +2,9 @@
 
 #include "Game.h"
 #include <cstdlib>
+#include <algorithm>
 
-TestObject::TestObject() : GameObject("assets/Test.png", 10, 10, 32, 32, 1) {
+TestObject::TestObject() : GameObject("assets/Test.png", 10, 10, 32, 32, 2) {
 
 	vX = 0;
 	vY = 0;
@@ -69,20 +70,19 @@ void TestObject::Update(Game * game) {
 	}
 
 	for(auto go : game->GetObjetcs()) if(this->CollidesWidth(go)) {
+		
+		int collisionWall = getCollisionWall(go);
 
-		if(abs((y + height / 2) - (go->GetY() + go->GetHeight() / 2)) >
-			abs((x + width / 2) - (go->GetX() + go->GetWidth() / 2))) {
+		if(collisionWall == Wall::RIGHT || collisionWall == Wall::LEFT) {
 
-			if(y > go->GetY()) y = go->GetY() + go->GetHeight();
-			else y = go->GetY() - height;
+			LockX(go);
 
 		} else {
 
-			if(x >= go->GetX()) x = go->GetX() + go->GetWidth();
-			else x = go->GetX() - width;
+			LockY(go);
 
 		}
-		
+
 	}
 
 	x += vX;

@@ -23,19 +23,33 @@ public:
 
 	bool CollidesWidth(GameObject * go);
 
-	int GetX();
-	int GetY();
+	float GetX();
+	float GetY();
 	int GetWidth();
 	int GetHeight();
 
 protected:
 
-	float x, y, scale;
-	int width, height;
-
+	float x, y, scale, width, height;
+	int spriteWidth, spriteHeight;
+	
 	SDL_Texture * texture;
 	SDL_Rect srcRect, destRect;
 
+	void LockX(GameObject * go);
+	void LockY(GameObject * go);
+	float getXCenter();
+	float getYCenter();
+
+	double GetAngleTo(GameObject * go);
+	int getCollisionWall(GameObject * go);
+	enum Wall {
+		TOP = 1,
+		RIGHT = 2,
+		BOTTOM = 3,
+		LEFT = 4
+	};
+	
 };
 
 #endif
