@@ -59,7 +59,7 @@ void Game::HandleEvents() {
 
 void Game::Update() {
 
-	for(auto go : objects) go->UpdateObject();
+	for(auto go : objects) go->UpdateObject(this);
 
 }
 
@@ -92,5 +92,11 @@ bool Game::IsRunning() {
 void Game::AddObject(GameObject * go) {
 
 	objects.push_back(go);
+
+}
+
+std::vector<GameObject*> Game::GetObjetcs() {
+
+	return objects;
 
 }

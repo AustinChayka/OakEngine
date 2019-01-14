@@ -1,2 +1,6 @@
 ﻿  TestObject.cpp
+c:\users\austi\onedrive\documents\github\oakengine\2d game engine\2d game engine\testobject.cpp(76): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\austi\onedrive\documents\github\oakengine\2d game engine\2d game engine\testobject.cpp(77): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\austi\onedrive\documents\github\oakengine\2d game engine\2d game engine\testobject.cpp(81): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\austi\onedrive\documents\github\oakengine\2d game engine\2d game engine\testobject.cpp(82): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   2D Game Engine.vcxproj -> C:\Users\austi\OneDrive\Documents\GitHub\OakEngine\2D Game Engine\Debug\2D Game Engine.exe

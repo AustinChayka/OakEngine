@@ -2,6 +2,7 @@
 
 #include "Game.h"
 #include "TestObject.h"
+#include "TestBlocker.h"
 
 Game * game = NULL;
 
@@ -16,6 +17,7 @@ int main(int argc, char * argv[]) {
 	game = new Game("OakEngine v0.2a", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
 
 	game->AddObject(new TestObject());
+	game->AddObject(new TestBlocker());
 	
 	while(game->IsRunning()) {
 

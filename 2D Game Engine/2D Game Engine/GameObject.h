@@ -5,6 +5,8 @@
 #include "TextureManager.h"
 #include "Game.h"
 
+class Game;
+
 class GameObject {
 
 public:
@@ -15,8 +17,8 @@ public:
 
 	~GameObject();
 
-	void UpdateObject();
-	virtual void Update() = 0;
+	void UpdateObject(Game * game);
+	virtual void Update(Game * game) = 0;
 	void RenderObject();
 
 	bool CollidesWidth(GameObject * go);

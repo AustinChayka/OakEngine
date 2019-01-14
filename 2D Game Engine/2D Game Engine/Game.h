@@ -27,6 +27,8 @@ public:
 	static SDL_Event event;
 
 	void AddObject(GameObject * go);
+
+	std::vector<GameObject*> GetObjetcs();
 		
 private:
 
@@ -34,7 +36,7 @@ private:
 	SDL_Window * window;
 
 	std::vector<GameObject *> objects;
-	
+		
 };
 
 #endif

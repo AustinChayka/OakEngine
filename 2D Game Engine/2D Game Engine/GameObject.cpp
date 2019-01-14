@@ -39,9 +39,9 @@ GameObject::GameObject(const char * textureSheet, float init_x, float init_y, in
 
 GameObject::~GameObject() {}
 
-void GameObject::UpdateObject() {
+void GameObject::UpdateObject(Game * game) {
 
-	Update();
+	Update(game);
 	
 	destRect.x = (int)x;
 	destRect.y = (int)y;
@@ -57,6 +57,8 @@ void GameObject::RenderObject() {
 }
 
 bool GameObject::CollidesWidth(GameObject * go) {
+
+	if(this == go) return false;
 
 	return x < go->GetX() + go->GetWidth()
 		&& x + width > go->GetX()
