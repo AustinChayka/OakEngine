@@ -30,7 +30,7 @@ public:
 
 protected:
 
-	float x, y, width, height;
+	float x, y, width, height, tileX = 0, tileY = 0;
 	int spriteWidth, spriteHeight;
 	
 	SDL_Texture * texture;
@@ -39,9 +39,9 @@ protected:
 	float getXCenter();
 	float getYCenter();
 
+	bool collidable = false;
 	void LockCollision(GameObject * go);
-
-	int getCollisionWall(GameObject * go);
+	int GetCollisionWall(GameObject * go);
 	enum Wall {
 		TOP = 1,
 		RIGHT = 2,

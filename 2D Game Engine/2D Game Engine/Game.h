@@ -28,7 +28,7 @@ public:
 
 	void AddObject(GameObject * go);
 
-	std::vector<GameObject*> GetObjetcs();
+	std::vector<GameObject*> GetObjetcs() const;
 		
 private:
 

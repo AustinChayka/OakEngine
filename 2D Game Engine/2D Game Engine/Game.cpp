@@ -1,5 +1,7 @@
 #include "Game.h"
 
+#include "ECS.h"
+
 SDL_Renderer * Game::renderer = nullptr;
 SDL_Event Game::event;
 
@@ -96,7 +98,7 @@ void Game::AddObject(GameObject * go) {
 
 }
 
-std::vector<GameObject*> Game::GetObjetcs() {
+std::vector<GameObject*> Game::GetObjetcs() const {
 
 	return objects;
 

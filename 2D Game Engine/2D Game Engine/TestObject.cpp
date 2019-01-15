@@ -80,10 +80,7 @@ void TestObject::Update(Game * game) {
 	x += vX;
 	y += vY;
 
-	for(auto go : game->GetObjetcs()) if(this->CollidesWidth(go)) {
-		
-		LockCollision(go);
-
-	}
+	tileX += .05f;
+	if(tileX > 3) tileX = 0;
 		
 }

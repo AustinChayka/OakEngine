@@ -45,6 +45,11 @@ GameObject::~GameObject() {}
 void GameObject::UpdateObject(Game * game) {
 
 	Update(game);
+
+	if(collidable) for(auto go : game->GetObjetcs()) if(this->CollidesWidth(go)) go->LockCollision(this);
+
+	srcRect.x = (int)tileX * spriteWidth;
+	srcRect.y = (int)tileY * spriteHeight;
 	
 	destRect.x = (int)x;
 	destRect.y = (int)y;
@@ -122,7 +127,7 @@ float GameObject::getYCenter() {
 
 void GameObject::LockCollision(GameObject * go) {
 
-	int collisionWall = getCollisionWall(go);
+	int collisionWall = GetCollisionWall(go);
 
 	if(collisionWall == Wall::RIGHT || collisionWall == Wall::LEFT) {
 
@@ -136,7 +141,7 @@ void GameObject::LockCollision(GameObject * go) {
 
 }
 
-int GameObject::getCollisionWall(GameObject * go) {
+int GameObject::GetCollisionWall(GameObject * go) {
 
 	int dX, dY;
 
