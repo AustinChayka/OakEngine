@@ -3,12 +3,14 @@
 #include "TestObject.h"
 #include "TestBlocker.h"
 
+#include "Game.h"
+
 LevelManager::LevelManager() {}
 
 LevelManager::~LevelManager() {}
 
 void LevelManager::LoadLevel(int n) {
-
+	
 	switch(n) {
 
 		objects.clear();

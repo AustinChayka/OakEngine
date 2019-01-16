@@ -26,6 +26,9 @@ private:
 	MenuState * mainMenu;
 	MenuState * pauseMenu;
 
+	int activeState = 1;
+	bool stateChanged = false;
+
 };
 
 #endif
