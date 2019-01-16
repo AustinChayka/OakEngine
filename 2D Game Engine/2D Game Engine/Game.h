@@ -4,10 +4,10 @@
 #include "SDL.h"
 #include <iostream>
 #include "SDL_image.h"
-#include <vector>
-#include "GameObject.h"
+#include "StateManager.h"
 
 class GameObject;
+class StateManager;
 
 class Game {
 
@@ -25,17 +25,13 @@ public:
 	
 	static SDL_Renderer * renderer;
 	static SDL_Event event;
-
-	void AddObject(GameObject * go);
-
-	std::vector<GameObject*> GetObjetcs() const;
 		
 private:
 
 	bool running = false;
 	SDL_Window * window;
 
-	std::vector<GameObject *> objects;
+	StateManager * stateManager;
 		
 };
 

@@ -3,8 +3,10 @@
 
 #include "SDL.h"
 #include "TextureManager.h"
+#include "LevelManager.h"
 #include "Game.h"
 
+class LevelManager;
 class Game;
 
 class GameObject {
@@ -17,8 +19,8 @@ public:
 
 	~GameObject();
 
-	void UpdateObject(Game * game);
-	virtual void Update(Game * game) = 0;
+	void UpdateObject(LevelManager * game);
+	virtual void Update(LevelManager * game) = 0;
 	void RenderObject();
 
 	bool CollidesWidth(GameObject * go);

@@ -15,8 +15,8 @@ GameObject::GameObject(const char * textureSheet, float init_x, float init_y, in
 	srcRect.w = spriteWidth;
 	srcRect.h = spriteHeight;
 
-	width = init_width;
-	height = init_height;
+	width = (float)init_width;
+	height = (float)init_height;
 	
 }
 
@@ -42,11 +42,11 @@ GameObject::GameObject(const char * textureSheet, float init_x, float init_y, in
 
 GameObject::~GameObject() {}
 
-void GameObject::UpdateObject(Game * game) {
+void GameObject::UpdateObject(LevelManager * game) {
 
 	Update(game);
 
-	if(collidable) for(auto go : game->GetObjetcs()) if(this->CollidesWidth(go)) go->LockCollision(this);
+	if(collidable) for(auto go : game->GetObjects()) if(this->CollidesWidth(go)) go->LockCollision(this);
 
 	srcRect.x = (int)tileX * spriteWidth;
 	srcRect.y = (int)tileY * spriteHeight;
@@ -143,7 +143,7 @@ void GameObject::LockCollision(GameObject * go) {
 
 int GameObject::GetCollisionWall(GameObject * go) {
 
-	int dX, dY;
+	float dX, dY;
 
 	if(x > go->GetX()) dX = go->GetX() + go->GetWidth() - x;
 	else dX = x + width - go->GetX();

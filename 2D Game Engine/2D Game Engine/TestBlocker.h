@@ -9,7 +9,7 @@ public:
 	TestBlocker();
 	~TestBlocker();
 
-	void Update(Game * game);
+	void Update(LevelManager * game);
 
 };
 

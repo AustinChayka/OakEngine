@@ -10,7 +10,7 @@ public:
 	TestObject();
 	~TestObject();
 	
-	void Update(Game * game);
+	void Update(LevelManager * game);
 
 private:
 

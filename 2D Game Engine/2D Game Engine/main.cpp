@@ -14,10 +14,7 @@ int main(int argc, char * argv[]) {
 	int frameTime;
 
 	game = new Game("OakEngine v0.2a", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, false);
-
-	game->AddObject(new TestObject());
-	game->AddObject(new TestBlocker());
-	
+		
 	while(game->IsRunning()) {
 
 		frameStart = SDL_GetTicks();
@@ -28,7 +25,7 @@ int main(int argc, char * argv[]) {
 
 		frameTime = SDL_GetTicks() - frameStart;
 
-		if(frameDelay > frameTime) SDL_Delay(frameDelay - frameTime);
+		if(frameDelay > frameTime) SDL_Delay((int)(frameDelay - frameTime));
 
 	}
 

@@ -18,7 +18,7 @@ TestObject::~TestObject() {
 
 }
 
-void TestObject::Update(Game * game) {
+void TestObject::Update(LevelManager * game) {
 
 	if(Game::event.type == SDL_KEYDOWN) {
 

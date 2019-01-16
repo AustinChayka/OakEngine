@@ -1,9 +1,8 @@
 #include "Game.h"
 
-#include "ECS.h"
-
 SDL_Renderer * Game::renderer = nullptr;
 SDL_Event Game::event;
+StateManager * stateManager = nullptr;
 
 Game::Game(const char * title, int xPos, int yPos, int width, int height, bool fullscreen) {
 
@@ -34,6 +33,8 @@ Game::Game(const char * title, int xPos, int yPos, int width, int height, bool f
 
 	} else  std::cout << "SDL failed to initialize. Error: " << SDL_GetError() << std::endl;
 
+	stateManager = new StateManager();
+	
 }
 
 Game::~Game() {
@@ -61,7 +62,7 @@ void Game::HandleEvents() {
 
 void Game::Update() {
 
-	for(auto go : objects) go->UpdateObject(this);
+	stateManager->Update();
 
 }
 
@@ -70,7 +71,7 @@ void Game::Render() {
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	SDL_RenderClear(renderer);
 
-	for(auto go : objects) go->RenderObject();
+	stateManager->Render();
 
 	SDL_RenderPresent(renderer);
 
@@ -89,17 +90,5 @@ void Game::Clean() {
 bool Game::IsRunning() {
 
 	return running;
-
-}
-
-void Game::AddObject(GameObject * go) {
-
-	objects.push_back(go);
-
-}
-
-std::vector<GameObject*> Game::GetObjetcs() const {
-
-	return objects;
 
 }
