@@ -24,9 +24,13 @@ public:
 	void AddObject(GameObject * go);
 	std::vector<GameObject *> GetObjects();
 
+	void NextLevel();
+
 private:
 
 	std::vector<GameObject *> objects;
+
+	int currentLevel = 0;
 
 };
 

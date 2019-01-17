@@ -82,5 +82,8 @@ void TestObject::Update(LevelManager * game) {
 
 	tileX += .05f;
 	if(tileX > 3) tileX = 0;
+
+	Game::camera.x = (int)x - Game::camera.w / 2;
+	Game::camera.y = (int)y - Game::camera.h / 2;
 		
 }

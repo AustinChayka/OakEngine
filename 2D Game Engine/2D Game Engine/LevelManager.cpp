@@ -24,6 +24,8 @@ void LevelManager::LoadLevel(int n) {
 			break;
 	}
 
+	currentLevel = n;
+
 }
 
 void LevelManager::Update(StateManager * sm) {
@@ -47,5 +49,12 @@ void LevelManager::AddObject(GameObject * go) {
 std::vector<GameObject*> LevelManager::GetObjects() {
 
 	return objects;
+
+}
+
+void LevelManager::NextLevel() {
+
+	currentLevel++;
+	LoadLevel(currentLevel);
 
 }

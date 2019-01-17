@@ -25,14 +25,16 @@ public:
 	
 	static SDL_Renderer * renderer;
 	static SDL_Event event;
-		
+
+	static SDL_Rect camera;
+
 private:
 
 	bool running = false;
 	SDL_Window * window;
 
 	StateManager * stateManager;
-		
+			
 };
 
 #endif

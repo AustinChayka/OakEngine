@@ -51,8 +51,8 @@ void GameObject::UpdateObject(LevelManager * game) {
 	srcRect.x = (int)tileX * spriteWidth;
 	srcRect.y = (int)tileY * spriteHeight;
 	
-	destRect.x = (int)x;
-	destRect.y = (int)y;
+	destRect.x = (int)x - Game::camera.x;
+	destRect.y = (int)y - Game::camera.y;
 	destRect.w = (int)width;
 	destRect.h = (int)height;
 
