@@ -51,10 +51,10 @@ void GameObject::UpdateObject(LevelManager * game) {
 	srcRect.x = (int)tileX * spriteWidth;
 	srcRect.y = (int)tileY * spriteHeight;
 	
-	destRect.x = (int)x - Game::camera.x;
-	destRect.y = (int)y - Game::camera.y;
-	destRect.w = (int)width;
-	destRect.h = (int)height;
+	destRect.x = (int)((x - Game::camera->GetX()) * Game::camera->GetScale());
+	destRect.y = (int)((y - Game::camera->GetY()) * Game::camera->GetScale());
+	destRect.w = (int)(width * Game::camera->GetScale());
+	destRect.h = (int)(width * Game::camera->GetScale());
 
 }
 
@@ -113,13 +113,13 @@ void GameObject::LockY(GameObject * go) {
 
 }
 
-float GameObject::getXCenter() {
+float GameObject::GetXCenter() {
 
 	return x + width / 2;
 
 }
 
-float GameObject::getYCenter() {
+float GameObject::GetYCenter() {
 
 	return y + height / 2;
 

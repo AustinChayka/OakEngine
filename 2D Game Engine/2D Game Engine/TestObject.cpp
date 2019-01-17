@@ -8,13 +8,12 @@ TestObject::TestObject() : GameObject("assets/Test.png", 10, 10, 32, 32, 2) {
 
 	vX = 0;
 	vY = 0;
-
+	
 }
 
 TestObject::~TestObject() {
 
-
-
+	
 
 }
 
@@ -40,6 +39,13 @@ void TestObject::Update(LevelManager * game) {
 				right = true;
 				break;
 
+			case SDLK_UP:
+				Game::camera->ChangeSize(.05f);
+				break;
+
+			case SDLK_DOWN:
+				Game::camera->ChangeSize(-.05f);
+				break;
 
 		}
 
@@ -82,8 +88,5 @@ void TestObject::Update(LevelManager * game) {
 
 	tileX += .05f;
 	if(tileX > 3) tileX = 0;
-
-	Game::camera.x = (int)x - Game::camera.w / 2;
-	Game::camera.y = (int)y - Game::camera.h / 2;
-		
+			
 }

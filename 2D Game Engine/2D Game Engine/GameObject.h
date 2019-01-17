@@ -29,6 +29,8 @@ public:
 	float GetY();
 	int GetWidth();
 	int GetHeight();
+	float GetXCenter();
+	float GetYCenter();
 
 protected:
 
@@ -37,10 +39,7 @@ protected:
 	
 	SDL_Texture * texture;
 	SDL_Rect srcRect, destRect;
-
-	float getXCenter();
-	float getYCenter();
-
+	
 	bool collidable = false;
 	void LockCollision(GameObject * go);
 	int GetCollisionWall(GameObject * go);

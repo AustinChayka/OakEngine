@@ -1,10 +1,12 @@
-﻿  Game.cpp
+﻿  Camera.cpp
+  Game.cpp
+c:\users\austi\onedrive\documents\github\oakengine\2d game engine\2d game engine\game.cpp(38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   GameObject.cpp
   LevelManager.cpp
+  main.cpp
   MenuState.cpp
   StateManager.cpp
   TestBlocker.cpp
   TestObject.cpp
-  main.cpp
   Generating Code...
   2D Game Engine.vcxproj -> C:\Users\austi\OneDrive\Documents\GitHub\OakEngine\2D Game Engine\Debug\2D Game Engine.exe

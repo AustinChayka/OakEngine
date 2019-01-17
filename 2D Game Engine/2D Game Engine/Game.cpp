@@ -4,7 +4,7 @@ SDL_Renderer * Game::renderer = nullptr;
 SDL_Event Game::event;
 StateManager * stateManager = nullptr;
 
-SDL_Rect Game::camera = {0, 0, 0, 0};
+Camera * Game::camera = nullptr;
 
 Game::Game(const char * title, int xPos, int yPos, int width, int height, bool fullscreen) {
 
@@ -34,11 +34,11 @@ Game::Game(const char * title, int xPos, int yPos, int width, int height, bool f
 		} else std::cout << "Failed to create window. Error: " << SDL_GetError() << std::endl;
 
 	} else  std::cout << "SDL failed to initialize. Error: " << SDL_GetError() << std::endl;
+	
+	camera = new Camera(0, 0, width, height);
 
 	stateManager = new StateManager();
 
-	camera.w = width;
-	camera.h = height;
 	
 }
 
@@ -68,6 +68,8 @@ void Game::HandleEvents() {
 void Game::Update() {
 
 	stateManager->Update();
+
+	camera->Update();
 
 }
 

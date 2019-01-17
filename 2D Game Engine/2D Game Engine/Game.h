@@ -5,9 +5,11 @@
 #include <iostream>
 #include "SDL_image.h"
 #include "StateManager.h"
+#include "Camera.h"
 
 class GameObject;
 class StateManager;
+class Camera;
 
 class Game {
 
@@ -26,7 +28,7 @@ public:
 	static SDL_Renderer * renderer;
 	static SDL_Event event;
 
-	static SDL_Rect camera;
+	static Camera * camera;
 
 private:
 

@@ -1,6 +1,9 @@
 ﻿  Game.cpp
+c:\users\austi\onedrive\documents\github\oakengine\2d game engine\2d game engine\game.cpp(40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  TestObject.cpp
+  main.cpp
   Generating code
-  7 of 130 functions ( 5.4%) were compiled, the rest were copied from previous compilation.
+  0 of 138 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code

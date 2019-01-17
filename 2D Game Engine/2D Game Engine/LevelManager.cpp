@@ -18,6 +18,7 @@ void LevelManager::LoadLevel(int n) {
 		case 0:
 			AddObject(new TestObject());
 			AddObject(new TestBlocker());
+			Game::camera->SetTarget(objects.at(0));
 			break;
 			
 		default:
