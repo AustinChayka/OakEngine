@@ -79,12 +79,32 @@ void Camera::SetTarget(GameObject * go) {
 
 }
 
+void Camera::SetSpeed(float newSpeed) {
+
+	speed = newSpeed;
+
+}
+
 void Camera::Update() {
 
 	if(target == nullptr) return;
 
-	x = target->GetXCenter() - (width / 2) / scale;
-	y = target->GetYCenter() - (height / 2) / scale;
+	int targetX = target->GetXCenter() - (width / 2) / scale,
+		targetY = target->GetYCenter() - (height / 2) / scale;
+
+	switch(currentMode) {
+
+		case 0:
+			x = targetX;
+			y = targetY;
+			break;
+
+		case 1:
+			x += (targetX - x) * speed;
+			y += (targetY - y) * speed;
+			break;
+
+	}
 
 	if(x < 0) x = 0;
 	if(y < 0) y = 0;

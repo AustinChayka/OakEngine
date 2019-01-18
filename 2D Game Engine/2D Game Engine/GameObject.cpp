@@ -40,13 +40,21 @@ GameObject::GameObject(const char * textureSheet, float init_x, float init_y, in
 
 }
 
-GameObject::~GameObject() {}
+GameObject::~GameObject() {
+
+	delete texture;
+
+}
 
 void GameObject::UpdateObject(LevelManager * game) {
 
 	Update(game);
 
-	if(collidable) for(auto go : game->GetObjects()) if(this->CollidesWidth(go)) go->LockCollision(this);
+	x += vX;
+	y += vY;
+
+	grounded = false;
+	if(collidable) for(auto go : game->GetObjects()) if(this->CollidesWith(go) && go->IsMoveable()) go->LockCollision(this);
 
 	srcRect.x = (int)tileX * spriteWidth;
 	srcRect.y = (int)tileY * spriteHeight;
@@ -54,7 +62,7 @@ void GameObject::UpdateObject(LevelManager * game) {
 	destRect.x = (int)((x - Game::camera->GetX()) * Game::camera->GetScale());
 	destRect.y = (int)((y - Game::camera->GetY()) * Game::camera->GetScale());
 	destRect.w = (int)(width * Game::camera->GetScale());
-	destRect.h = (int)(width * Game::camera->GetScale());
+	destRect.h = (int)(height * Game::camera->GetScale());
 
 }
 
@@ -64,7 +72,7 @@ void GameObject::RenderObject() {
 
 }
 
-bool GameObject::CollidesWidth(GameObject * go) {
+bool GameObject::CollidesWith(GameObject * go) {
 
 	if(this == go) return false;
 
@@ -87,6 +95,18 @@ float GameObject::GetY() {
 
 }
 
+float GameObject::GetVX() {
+
+	return vX;
+
+}
+
+float GameObject::GetVY() {
+
+	return vY;
+
+}
+
 int GameObject::GetWidth() {
 
 	return (int)width;
@@ -104,12 +124,19 @@ void GameObject::LockX(GameObject * go) {
 	if(x >= go->GetX()) x = go->GetX() + go->GetWidth();
 	else x = go->GetX() - width;
 
+	vX = 0;
+
 }
 
 void GameObject::LockY(GameObject * go) {
 
 	if(y > go->GetY()) y = go->GetY() + go->GetHeight();
-	else y = go->GetY() - height;
+	else {
+		y = go->GetY() - height;
+		grounded = true;
+	}
+
+	vY = 0;
 
 }
 
@@ -122,6 +149,18 @@ float GameObject::GetXCenter() {
 float GameObject::GetYCenter() {
 
 	return y + height / 2;
+
+}
+
+bool GameObject::IsDead() {
+
+	return dead;
+
+}
+
+bool GameObject::IsMoveable() {
+
+	return moveable;
 
 }
 
@@ -142,6 +181,8 @@ void GameObject::LockCollision(GameObject * go) {
 }
 
 int GameObject::GetCollisionWall(GameObject * go) {
+
+	if(!CollidesWith(go)) return -1;
 
 	float dX, dY;
 

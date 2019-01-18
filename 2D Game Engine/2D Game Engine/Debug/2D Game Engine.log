@@ -1,12 +1,4 @@
-﻿  Camera.cpp
-  Game.cpp
-c:\users\austi\onedrive\documents\github\oakengine\2d game engine\2d game engine\game.cpp(38): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  GameObject.cpp
-  LevelManager.cpp
-  main.cpp
-  MenuState.cpp
-  StateManager.cpp
-  TestBlocker.cpp
-  TestObject.cpp
-  Generating Code...
-  2D Game Engine.vcxproj -> C:\Users\austi\OneDrive\Documents\GitHub\OakEngine\2D Game Engine\Debug\2D Game Engine.exe
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(391,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (2D Game Engine.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Box.cpp
+c:\users\austi\onedrive\documents\sdl projects\2d game engine\test game\2d game engine\2d game engine\camera.h(33): warning C4091: 'static ': ignored on left of 'Camera::Mode' when no variable is declared
+  2D Game Engine.vcxproj -> C:\Users\austi\OneDrive\Documents\SDL Projects\2D Game Engine\Test Game\2D Game Engine\Debug\Game.exe

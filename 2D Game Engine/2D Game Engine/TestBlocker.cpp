@@ -1,6 +1,9 @@
 #include "TestBlocker.h"
 
-TestBlocker::TestBlocker() : GameObject("assets/Test.png", 200, 250, 32, 32, 3) { collidable = true;  }
+TestBlocker::TestBlocker(float x, float y) : GameObject("assets/Test.png", x, y, 200, 5, 3) { 
+	collidable = true;  
+	moveable = false;
+}
 
 TestBlocker::~TestBlocker() {}
 

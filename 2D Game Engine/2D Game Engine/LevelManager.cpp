@@ -1,7 +1,8 @@
 #include "LevelManager.h"
 
-#include "TestObject.h"
+#include "Player.h"
 #include "TestBlocker.h"
+#include "Box.h"
 
 #include "Game.h"
 
@@ -16,8 +17,9 @@ void LevelManager::LoadLevel(int n) {
 		objects.clear();
 
 		case 0:
-			AddObject(new TestObject());
-			AddObject(new TestBlocker());
+			AddObject(new Player(50, 50));
+			AddObject(new TestBlocker(50, 300));
+			AddObject(new Box(200, 20));
 			Game::camera->SetTarget(objects.at(0));
 			break;
 			
@@ -31,7 +33,15 @@ void LevelManager::LoadLevel(int n) {
 
 void LevelManager::Update(StateManager * sm) {
 	
-	for(auto go : objects) go->UpdateObject(this); 
+	for(int i = 0; i < objects.size(); i++) {
+
+		objects.at(i)->UpdateObject(this);
+		if(objects.at(i)->IsDead()) {
+			delete objects.at(i);
+			objects.erase(objects.begin() + i);
+		}
+
+	}
 
 }
 
