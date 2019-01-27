@@ -21,9 +21,10 @@ public:
 
 	void UpdateObject(LevelManager * game);
 	virtual void Update(LevelManager * game) = 0;
-	void RenderObject();
+	virtual void RenderObject();
 
 	bool CollidesWith(GameObject * go);
+	virtual void OnCollision(GameObject * go) {}
 
 	float GetX();
 	float GetY();
@@ -35,10 +36,15 @@ public:
 	float GetYCenter();
 	bool IsDead();
 	bool IsMoveable();
+	void SetVX(float new_vX);
+	void SetX(float new_x);
+	void SetY(float new_y);
+	
+	virtual void DealDamage(int d);
 
 protected:
 
-	float x, y, width, height, tileX = 0, tileY = 0, vX, vY;
+	float x, y, width, height, tileX = 0, tileY = 0, vX, vY, scale;
 	int spriteWidth, spriteHeight;
 	
 	SDL_Texture * texture;
@@ -54,10 +60,11 @@ protected:
 		LEFT = 4
 	};
 
-private:
-
 	void LockX(GameObject * go);
 	void LockY(GameObject * go);
+
+	bool damageable = false;
+	int health = -1;
 	
 };
 

@@ -1,33 +1,50 @@
 #include "LevelManager.h"
 
 #include "Player.h"
-#include "TestBlocker.h"
+#include "Platform.h"
 #include "Box.h"
+#include <fstream>
 
 #include "Game.h"
 
-LevelManager::LevelManager() {}
+GameObject * LevelManager::player = nullptr;
+
+LevelManager::LevelManager() {
+
+	player = new Player(0, 0);
+	Game::camera->SetTarget(player);
+
+}
 
 LevelManager::~LevelManager() {}
 
 void LevelManager::LoadLevel(int n) {
-	
+
+	objects.clear();
+
+	AddObject(player);
+		
 	switch(n) {
 
-		objects.clear();
-
 		case 0:
-			AddObject(new Player(50, 50));
-			AddObject(new TestBlocker(50, 300));
-			AddObject(new Box(200, 20));
-			Game::camera->SetTarget(objects.at(0));
+			player->SetX(50);
+			player->SetY(50);
+			AddObject(new Platform(50, 300, 35));
+			AddObject(new Platform(500, 100, 10));
+			AddObject(new Box(300, -200));
 			break;
 			
 		default:
 			break;
 	}
 
-	currentLevel = n;
+	currentLevel = 0;
+
+}
+
+void LevelManager::GenerateLevel(char * path, int sizeX, int sizeY) {
+
+	//TODO: rng level gen
 
 }
 
@@ -39,15 +56,20 @@ void LevelManager::Update(StateManager * sm) {
 		if(objects.at(i)->IsDead()) {
 			delete objects.at(i);
 			objects.erase(objects.begin() + i);
+			i--;
 		}
 
 	}
+
+	Game::gui->Update();
 
 }
 
 void LevelManager::Render() {
 
 	for(auto go : objects) go->RenderObject();
+
+	Game::gui->Render();
 
 }
 

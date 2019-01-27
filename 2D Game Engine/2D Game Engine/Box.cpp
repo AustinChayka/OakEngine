@@ -11,9 +11,14 @@ Box::Box(float x, float y) : GameObject("assets/Box.png", x, y, 32, 32, 3) {
 Box::~Box() {}
 
 void Box::Update(LevelManager * game) {
-
-	vY += .9f;
 	
+	vY += .9f;
+
 }
 
+void Box::OnCollision(GameObject * go) {
 
+	if(go->IsMoveable() && GetCollisionWall(go) != TOP) 
+		go->SetVX(go->GetVX() / 1.75f);
+
+}

@@ -94,7 +94,13 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\austi\OneDrive\Documents\SDL Projects\2D Game Engine\Test Game\SDL2\SDL2_image-2.0.4\include;C:\Users\austi\OneDrive\Documents\SDL Projects\2D Game Engine\Test Game\SDL2\SDL2-2.0.9\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>C:\Users\austi\OneDrive\Documents\SDL Projects\2D Game Engine\Test Game\SDL2\SDL2_image-2.0.4\lib\x86;C:\Users\austi\OneDrive\Documents\SDL Projects\2D Game Engine\Test Game\SDL2\SDL2-2.0.9\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.h;SDL2main.h;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -131,25 +137,35 @@
   <ItemGroup>
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Ember.cpp" />
+    <ClCompile Include="Fire.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GUI.cpp" />
     <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuState.cpp" />
+    <ClCompile Include="Particle.cpp" />
+    <ClCompile Include="Platform.cpp" />
+    <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="StateManager.cpp" />
-    <ClCompile Include="TestBlocker.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Box.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Ember.h" />
+    <ClInclude Include="Fire.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GUI.h" />
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="MenuState.h" />
+    <ClInclude Include="Particle.h" />
+    <ClInclude Include="Platform.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="StateManager.h" />
-    <ClInclude Include="TestBlocker.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="TextureManager.h" />
   </ItemGroup>

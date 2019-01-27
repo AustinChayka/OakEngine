@@ -1,7 +1,6 @@
 #include "SDL.h"
 
 #include "Game.h"
-#include "TestBlocker.h"
 
 Game * game = NULL;
 

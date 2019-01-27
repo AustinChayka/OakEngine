@@ -35,7 +35,7 @@ public:
 
 private:
 
-	float x, y, width, height, scale, minScale = .1f, maxScale = 5, speed = .1f;
+	float x, y, width, height, scale, minScale = .1f, maxScale = 5, speed = .08f;
 	int currentMode = 1;
 	GameObject * target;
 

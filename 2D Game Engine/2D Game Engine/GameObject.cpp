@@ -3,7 +3,7 @@
 
 GameObject::GameObject(const char * textureSheet, float init_x, float init_y, int init_width, int init_height) {
 
-	texture = TextureManager::LoadTexture(Game::renderer, textureSheet);
+	if(textureSheet != nullptr) texture = TextureManager::LoadTexture(Game::renderer, textureSheet);
 
 	x = init_x;
 	y = init_y;
@@ -17,13 +17,15 @@ GameObject::GameObject(const char * textureSheet, float init_x, float init_y, in
 
 	width = (float)init_width;
 	height = (float)init_height;
+
+	scale = 1;
 	
 }
 
 GameObject::GameObject(const char * textureSheet, float init_x, float init_y, int init_width, int init_height, 
 	float init_scale) {
 
-	texture = TextureManager::LoadTexture(Game::renderer, textureSheet);
+	if(textureSheet != nullptr) texture = TextureManager::LoadTexture(Game::renderer, textureSheet);
 
 	x = init_x;
 	y = init_y;
@@ -38,23 +40,32 @@ GameObject::GameObject(const char * textureSheet, float init_x, float init_y, in
 	width = init_width * init_scale;
 	height = init_height * init_scale;
 
+	scale = init_scale;
+
 }
 
 GameObject::~GameObject() {
 
-	delete texture;
-
+	SDL_DestroyTexture(texture);
+	texture = nullptr;
+	
 }
 
 void GameObject::UpdateObject(LevelManager * game) {
-
+	
 	Update(game);
 
+	if(damageable && health <= 0) dead = true;
+	
 	x += vX;
 	y += vY;
-
+	
 	grounded = false;
-	if(collidable) for(auto go : game->GetObjects()) if(this->CollidesWith(go) && go->IsMoveable()) go->LockCollision(this);
+	if(collidable) for(auto go : game->GetObjects()) if(this->CollidesWith(go)) {
+		go->OnCollision(this);
+		OnCollision(go);
+		if(go->IsMoveable()) go->LockCollision(this);
+	}
 
 	srcRect.x = (int)tileX * spriteWidth;
 	srcRect.y = (int)tileY * spriteHeight;
@@ -161,6 +172,31 @@ bool GameObject::IsDead() {
 bool GameObject::IsMoveable() {
 
 	return moveable;
+
+}
+
+void GameObject::SetVX(float new_vX) {
+
+	vX = new_vX;
+
+}
+
+void GameObject::SetX(float new_x) {
+
+	x = new_x;
+
+}
+
+void GameObject::SetY(float new_y) {
+
+	y = new_y;
+
+}
+
+void GameObject::DealDamage(int d) {
+
+	if(!damageable) return;
+	health -= d;
 
 }
 

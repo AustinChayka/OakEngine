@@ -6,7 +6,15 @@ StateManager * stateManager = nullptr;
 
 Camera * Game::camera = nullptr;
 
-Game::Game(const char * title, int xPos, int yPos, int width, int height, bool fullscreen) {
+int Game::width;
+int Game::height;
+
+GUI * Game::gui = nullptr;
+
+Game::Game(const char * title, int xPos, int yPos, int init_width, int init_height, bool fullscreen) {
+
+	width = init_width;
+	height = init_height;
 
 	int flags = 0;
 	if(fullscreen) flags = SDL_WINDOW_FULLSCREEN;
@@ -26,6 +34,7 @@ Game::Game(const char * title, int xPos, int yPos, int width, int height, bool f
 				std::cout << "Renderer created." << std::endl;
 
 				SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+				SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 
 				running = true;
 
@@ -39,6 +48,7 @@ Game::Game(const char * title, int xPos, int yPos, int width, int height, bool f
 
 	stateManager = new StateManager();
 
+	gui = new GUI(LevelManager::player);
 	
 }
 

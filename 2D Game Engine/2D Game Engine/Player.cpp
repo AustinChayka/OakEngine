@@ -1,8 +1,7 @@
 #include "Player.h"
 
 #include "Game.h"
-#include <cstdlib>
-#include <algorithm>
+#include "Projectile.h"
 
 Player::Player(float x, float y) : GameObject("assets/Player.png", x, y, 21, 36, 3) {
 
@@ -25,24 +24,25 @@ void Player::Update(LevelManager * game) {
 
 		switch(Game::event.key.keysym.sym) {
 
-			case SDLK_SPACE:
-				if(grounded) vY = -12;
+			case SDLK_w:
+				if(grounded) vY = -jumpPower;
 				break;
 
 			case SDLK_a:
 				left = true;
+				dir = -1;
 				break;
 
 			case SDLK_d:
 				right = true;
-				break;
-
-			case SDLK_UP:
-				Game::camera->ChangeSize(.05f);
-				break;
-
-			case SDLK_DOWN:
-				Game::camera->ChangeSize(-.05f);
+				dir = 1;
+				break; 
+			
+			case SDLK_SPACE:
+				if(shot == 0) {
+					game->AddObject(new Projectile(GetXCenter(), GetYCenter(), vX + 10 * dir, vY, dir, 0, this));
+					shot = shotDelay;
+				}
 				break;
 				
 		}
@@ -65,19 +65,21 @@ void Player::Update(LevelManager * game) {
 
 	}
 
+	if(shot > 0) shot--;
+
 	if(left) {
-		if(vX > -5) vX -= .4f;
+		if(vX > -maxSpeed) vX -= acceleration;
 		tileY = 1;
 		tileX += .17f;
 	}
 	if(right) {
-		if(vX < 5) vX += .4f;
+		if(vX < maxSpeed) vX += acceleration;
 		tileY = 0;
 		tileX += .17f;
 	}
 
 	if(!left && !right) {
-		vX /= 1.2f;
+		vX /= decceleration;
 		tileX = 0;
 	}
 			

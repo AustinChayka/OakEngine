@@ -6,10 +6,12 @@
 #include "SDL_image.h"
 #include "StateManager.h"
 #include "Camera.h"
+#include "GUI.h"
 
 class GameObject;
 class StateManager;
 class Camera;
+class GUI;
 
 class Game {
 
@@ -30,6 +32,10 @@ public:
 
 	static Camera * camera;
 
+	static int width, height;
+
+	static GUI * gui;
+	
 private:
 
 	bool running = false;

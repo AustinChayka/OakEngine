@@ -13,6 +13,8 @@ public:
 
 	void Update(LevelManager * game);
 
+	void OnCollision(GameObject * go);
+
 };
 
 #endif

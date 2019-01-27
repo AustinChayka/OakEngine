@@ -18,6 +18,8 @@ public:
 
 	void LoadLevel(int n);
 
+	void GenerateLevel(char * path, int sizeX, int sizeY);
+
 	void Update(StateManager * sm);
 	void Render();
 
@@ -26,12 +28,14 @@ public:
 
 	void NextLevel();
 
+	static GameObject * player;
+
 private:
 
 	std::vector<GameObject *> objects;
 
 	int currentLevel = 0;
-
+	
 };
 
 #endif
